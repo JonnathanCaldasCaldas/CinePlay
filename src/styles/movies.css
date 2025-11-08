@@ -1,0 +1,38 @@
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 30px;
+  background: #0e0e0e;
+}
+
+.movie-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.movie-title {
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.movie-rating {
+  color: gold;
+  margin-bottom: 10px;
+}
+

@@ -1,0 +1,27 @@
+/* src/index.css o src/main.css */
+
+/* REINICIO GENERAL (Reset) */
+html, body {
+    margin: 0;
+    padding: 0;
+    /* Evita problemas de scroll que podrían causar áreas blancas */
+    overflow-x: hidden; 
+}
+
+/* FUERZA EL FONDO OSCURO EN EL BODY */
+body {
+    /* Color de fondo oscuro - AJUSTA ESTE VALOR */
+    background-color: #121212 !important; 
+    color: #FFFFFF; /* Texto blanco por defecto */
+    /* Asegura que el body ocupe toda la altura */
+    min-height: 100vh; 
+}
+
+/* FUERZA EL FONDO EN EL CONTENEDOR RAIZ DE REACT */
+#root {
+    /* Importante para que el contenido ocupe toda el área */
+    width: 100%;
+    min-height: 100vh;
+    /* Color de fondo oscuro - AJUSTA ESTE VALOR */
+    background-color: #121212 !important; 
+}

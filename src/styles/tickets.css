@@ -1,0 +1,35 @@
+.tickets-container {
+  padding: 20px;
+  background: #0e0e0e;
+  color: white;
+}
+
+.ticket-item {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-item span {
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.buttons button {
+  background: none;
+  border: 1px solid #FFC300;
+  color: #FFC300;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+}
