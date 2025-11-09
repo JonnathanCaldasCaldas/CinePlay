@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./../styles/navbar.css";
 
+import logoCinePlay from "../assets/logo_sin_letras.png";
+
 export default function Navbar() {
   const [city, setCity] = useState("Cuenca");
   const [cinema, setCinema] = useState("Millenium");
@@ -21,8 +23,9 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="logo">
-        <span className="logo-icon">M</span>
-        <span className="logo-text">multicines</span>
+        {/* ARREGLAR LOGO */}
+        <img className="logo-icon" src={logoCinePlay} alt="CinePlay"/>
+        <span className="logo-text"><cine style={{ color: "#FCB137" }}>Cine</cine><play style={{ color: "#3D8BFD" }}>Play</play></span>
       </div>
 
       <button 
@@ -69,7 +72,7 @@ export default function Navbar() {
 
         <button className="btn-yellow">Ingresar</button>
 
-        <Link to="/cartelera" className="icon-btn">🍿</Link>
+        {/*<Link to="/cartelera" className="icon-btn">🍿</Link>*/}
         <Link to="/opiniones" className="icon-btn">👤</Link>
         <button className="icon-btn">🛒</button>
       </nav>

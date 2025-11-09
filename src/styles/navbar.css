@@ -68,7 +68,7 @@
 }
 
 .logo-icon {
-  background: linear-gradient(45deg, #00BFFF, #FF0080);
+  width: 70px;
   padding: 6px 10px;
   border-radius: 6px;
 }
