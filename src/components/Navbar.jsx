@@ -23,7 +23,6 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="logo">
-        {/* ARREGLAR LOGO */}
         <img className="logo-icon" src={logoCinePlay} alt="CinePlay"/>
         <span className="logo-text"><cine style={{ color: "#FCB137" }}>Cine</cine><play style={{ color: "#3D8BFD" }}>Play</play></span>
       </div>
@@ -72,7 +71,7 @@ export default function Navbar() {
 
         <button className="btn-yellow">Ingresar</button>
 
-        {/*<Link to="/cartelera" className="icon-btn">🍿</Link>*/}
+        <Link to="/cartelera" className="icon-btn">🍿</Link>
         <Link to="/opiniones" className="icon-btn">👤</Link>
         <button className="icon-btn">🛒</button>
       </nav>
