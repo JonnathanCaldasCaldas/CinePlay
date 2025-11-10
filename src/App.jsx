@@ -5,6 +5,21 @@ import MovieGrid from "./components/MovieGrid";
 import Footer from "./components/Footer";
 import { getTrendingMovies } from "./services/moviesAPI";
 import Opiniones from "./components/Opiniones";
+import MovieDetails from "./components/MovieDetails";
+import CartProvider from "./context/CartProvider";
+import { useCart } from "./context/CartContext";
+import SideCart from "./components/SideCart";
+
+function AppContent() {
+  const { showCart, closeCart } = useCart(); // Obtener estado y función del carrito
+
+  return (
+    <>
+      <Navbar />
+      <SideCart show={showCart} handleClose={closeCart} />
+    </>
+  );
+}
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -14,26 +29,20 @@ function App() {
   }, []);
 
   return (
-    // CAMBIO CLAVE: Contenedor principal para aplicar el fondo oscuro y altura completa
-    <div className="main-container"> 
-      <Navbar />
+    <CartProvider>
+      <div className="main-container">
+        <AppContent />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <MovieGrid movies={movies} />
-            </>
-          }
-        />
+        <Routes>
+          <Route path="/" element={<MovieGrid movies={movies} />} />
+          <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
+          <Route path="/opiniones" element={<Opiniones />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+        </Routes>
 
-        <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
-        <Route path="/opiniones" element={<Opiniones />} />
-      </Routes>
-
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 

@@ -1,13 +1,17 @@
 // Navbar.jsx (Versión Responsive)
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, Badge } from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 import "./../styles/navbar.css";
 
 export default function Navbar() {
   const [city, setCity] = useState("Cuenca");
-  const [cinema, setCinema] = useState("Millenium");
+  const [cinema, setCinema] = useState("Millenium Plaza");
   const [date, setDate] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cart, openCart } = useCart();
   
   const cities = {
     Cuenca: ["Millenium Plaza", "Batan", "Mall del Río"],
@@ -18,11 +22,16 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    localStorage.setItem("city", city);
+    localStorage.setItem("cinema", cinema);
+  }, [city, cinema]);
+
   return (
     <header className="navbar">
       <div className="logo">
-        <span className="logo-icon">M</span>
-        <span className="logo-text">multicines</span>
+        <Link to="/cartelera" className="logo-icon">C</Link>
+        <Link to="/cartelera" className="logo-text">CinePlay</Link>
       </div>
 
       <button 
@@ -71,7 +80,23 @@ export default function Navbar() {
 
         <Link to="/cartelera" className="icon-btn">🍿</Link>
         <Link to="/opiniones" className="icon-btn">👤</Link>
-        <button className="icon-btn">🛒</button>
+        {/* <button className="icon-btn" onClick={openCart}>🛒</button> */}
+        <Button 
+          variant="primary"
+          className="position-relative"
+          onClick={openCart}
+        >
+          <FaShoppingCart size={20} />
+          {cart.length > 0 && (
+            <Badge
+              bg="secondary"
+              pill
+              className="position-absolute top-0 start-100 translate-middle"
+            >
+              {cart.length}
+            </Badge>
+          )}
+        </Button>
       </nav>
     </header>
   );

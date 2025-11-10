@@ -5,12 +5,16 @@ export async function getTrendingMovies() {
 
   const res = await fetch(url);
 
-  if (!res.ok) {
-    console.error("Error al obtener películas:", res.status);
-    return [];
-  }
-
+  if (!res.ok) throw new Error("No se pudieron obtener las películas");
   const data = await res.json();
-  return data.results ?? [];
+  return data.results;
+}
+
+export async function getMovieById(id) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+  );
+  if (!res.ok) throw new Error("No se pudo obtener la película");
+  return res.json();
 }
 
