@@ -31,16 +31,12 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
+    <Link to="/" className="logo-link">
       <div className="logo">
-<<<<<<< HEAD
-        <Link to="/cartelera" className="logo-icon">C</Link>
-        <Link to="/cartelera" className="logo-text">CinePlay</Link>
-=======
         <img className="logo-icon" src={logoCinePlay} alt="CinePlay"/>
-        <span className="logo-text"><cine style={{ color: "#FCB137" }}>Cine</cine><play style={{ color: "#3D8BFD" }}>Play</play></span>
->>>>>>> origin/main
+        <span className="logo-text"><div style={{ color: "#FCB137" }}>Cine</div><div style={{ color: "#3D8BFD" }}>Play</div></span>
       </div>
-
+    </Link>
       <button 
         className="menu-toggle-btn" 
         onClick={toggleMenu}

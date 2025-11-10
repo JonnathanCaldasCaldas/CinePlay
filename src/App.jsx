@@ -8,17 +8,31 @@ import CartProvider from "./context/CartProvider";
 import { useCart } from "./context/CartContext";
 import SideCart from "./components/SideCart";
 
-function AppContent() {
-  const { showCart, closeCart } = useCart(); // Obtener estado y función del carrito
+function AppLayout() {
+    const { showCart, closeCart } = useCart();
+    const [movies, setMovies] = useState([]);
+    useEffect(() => {
+        getTrendingMovies().then(setMovies).catch(console.error);
+    }, []);
 
-  return (
-    <>
-      <Navbar />
-      <SideCart show={showCart} handleClose={closeCart} />
-    </>
-  );
+    return (
+        <div className="main-container">
+            <Navbar />
+            <SideCart show={showCart} handleClose={closeCart} />
+
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                
+                <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
+                <Route path="/opiniones" element={<Opiniones />} />
+                <Route path="/movie/:id" element={<MovieDetails />} />
+            </Routes>
+
+            {/* 3. Footer estático */}
+            <Footer />
+        </div>
+    )
 }
-
 //componente para /cartelera 
 import { getTrendingMovies } from "./services/moviesAPI";
 import MovieGrid from "./components/MovieGrid";
@@ -30,34 +44,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    getTrendingMovies().then(setMovies).catch(console.error);
-  }, []);
-
   return (
     <CartProvider>
-      <div className="main-container">
-        <AppContent />
-
-<<<<<<< HEAD
-        <Routes>
-          <Route path="/" element={<MovieGrid movies={movies} />} />
-          <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
-          <Route path="/opiniones" element={<Opiniones />} />
-          <Route path="/movie/:id" element={<MovieDetails />} />
-        </Routes>
-=======
-      <Routes>
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
->>>>>>> origin/main
-
-        <Footer />
-      </div>
+      <AppLayout /> 
     </CartProvider>
   );
 }

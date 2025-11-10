@@ -68,13 +68,8 @@ header.navbar {
 }
 
 .logo-icon {
-<<<<<<< HEAD
-  background: linear-gradient(45deg, #00BFFF, #FF0080);
-  padding: 8px 10px;
-=======
   width: 70px;
   padding: 6px 10px;
->>>>>>> origin/main
   border-radius: 6px;
 }
 

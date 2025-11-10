@@ -18,12 +18,8 @@ export async function fetchFromTMDB(endpoint) {
     return [];
   }
 }
-export async function getMovieById(id) {
-    const data = await fetchFromTMDB(`movie/${id}`);
-    if (data.length === 0) {
-      throw new Error("No se pudo obtener la película");
-    }
-    return data; 
+export function getMovieById(id) {
+  return fetchFromTMDB(`/movie/${id}`);
 }
 
 export function getTrendingMovies() {
