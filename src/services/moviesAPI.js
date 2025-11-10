@@ -1,20 +1,59 @@
 const apiKey = "ee2c6d376418907fe8a0b4e7beada4e9";
 
-export async function getTrendingMovies() {
-  const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+export async function fetchFromTMDB(endpoint) {
+  const url = `https://api.themoviedb.org/3${endpoint}?api_key=${apiKey}`;
 
-  const res = await fetch(url);
+  try {
+    const res = await fetch(url);
+    
+    if (!res.ok) {
+      console.error("Error al obtener películas:", res.status);
+      return [];
+    }
 
-  if (!res.ok) throw new Error("No se pudieron obtener las películas");
-  const data = await res.json();
-  return data.results;
+    const data = await res.json();
+    return data.results ?? data; // Asegura devolver data.results si existe, sino data
+  } catch (error) {
+    console.error("Error al obtener películas:", error);
+    return [];
+  }
 }
-
 export async function getMovieById(id) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
-  );
-  if (!res.ok) throw new Error("No se pudo obtener la película");
-  return res.json();
+    const data = await fetchFromTMDB(`movie/${id}`);
+    if (data.length === 0) {
+      throw new Error("No se pudo obtener la película");
+    }
+    return data; 
 }
 
+export function getTrendingMovies() {
+  return fetchFromTMDB("/trending/movie/week");
+}
+
+export function getPopularMovies() {
+  return fetchFromTMDB("/movie/popular");
+}
+
+export function getTopRatedMovies() {
+  return fetchFromTMDB("/movie/top_rated");
+}
+
+export function getUpcomingMovies() {
+  return fetchFromTMDB("/movie/upcoming");
+}
+
+export function getNowPlayingMovies() {
+  return fetchFromTMDB("/movie/now_playing");
+}
+
+export function getOldestMovies() {
+  return fetchFromTMDB("/discover/movie?sort_by=release_date.asc");
+}
+
+export function getLatestMovies() {
+  return fetchFromTMDB("/discover/movie?sort_by=release_date.desc");
+}
+
+export function getWorstRatedMovies() {
+  return fetchFromTMDB("/discover/movie?sort_by=vote_average.asc");
+}

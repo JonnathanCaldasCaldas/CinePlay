@@ -6,6 +6,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "./../styles/navbar.css";
 
+import logoCinePlay from "../assets/logo_sin_letras.png";
+
 export default function Navbar() {
   const [city, setCity] = useState("Cuenca");
   const [cinema, setCinema] = useState("Millenium Plaza");
@@ -30,8 +32,13 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="logo">
+<<<<<<< HEAD
         <Link to="/cartelera" className="logo-icon">C</Link>
         <Link to="/cartelera" className="logo-text">CinePlay</Link>
+=======
+        <img className="logo-icon" src={logoCinePlay} alt="CinePlay"/>
+        <span className="logo-text"><cine style={{ color: "#FCB137" }}>Cine</cine><play style={{ color: "#3D8BFD" }}>Play</play></span>
+>>>>>>> origin/main
       </div>
 
       <button 

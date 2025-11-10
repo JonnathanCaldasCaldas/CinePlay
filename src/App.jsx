@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import MovieGrid from "./components/MovieGrid";
 import Footer from "./components/Footer";
-import { getTrendingMovies } from "./services/moviesAPI";
 import Opiniones from "./components/Opiniones";
 import MovieDetails from "./components/MovieDetails";
 import CartProvider from "./context/CartProvider";
@@ -21,6 +19,16 @@ function AppContent() {
   );
 }
 
+//componente para /cartelera 
+import { getTrendingMovies } from "./services/moviesAPI";
+import MovieGrid from "./components/MovieGrid";
+// //Página Principal
+import HomePage from "./components/HomePage";
+
+//librerías para el carrusel
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 function App() {
   const [movies, setMovies] = useState([]);
 
@@ -33,12 +41,20 @@ function App() {
       <div className="main-container">
         <AppContent />
 
+<<<<<<< HEAD
         <Routes>
           <Route path="/" element={<MovieGrid movies={movies} />} />
           <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
           <Route path="/opiniones" element={<Opiniones />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
+=======
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+>>>>>>> origin/main
 
         <Footer />
       </div>
