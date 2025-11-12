@@ -10,7 +10,10 @@ export default function MovieDetail() {
     const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
     const [cinema, setCinema] = useState("");
-    const { addToCart, openCart } = useCart();
+    const [language, setLanguage] = useState("");
+    const [format, setFormat] = useState("");
+    const [time, setTime] = useState("");
+    const { addToCart, openCart, updateSelections } = useCart();
 
     useEffect(() => {
         getMovieById(id).then(setMovie).catch(console.error);
@@ -36,10 +39,19 @@ export default function MovieDetail() {
         poster: poster,
         price: 6.5,    // precio simulado
         cinema,
+        language,
+        format,
+        time,
         quantity: 1,
     }
-    const handleAddToCart = () => {
-        addToCart(movieItem);
+  const handleAddToCart = () => {
+    updateSelections({language, format, time});
+      addToCart({
+        ...movieItem,
+        language,
+        format,
+        time,
+      });
         openCart();
     }
 
@@ -64,25 +76,34 @@ export default function MovieDetail() {
           <div className="movie-cinema"><h3>CINE: {cinema || "No seleccionado"}</h3></div>
           
           <div className="select-group">
-            <select>
-              <option>Español</option>
-              <option>Inglés</option>
-              <option>Castellano</option>
+            <select value={ language } onChange={(e) => setLanguage(e.target.value)}>
+              <option value="">Idioma</option>
+              <option value="Español">Español</option>
+              <option value="Inglés">Inglés</option>
+              <option value="Castellano">Castellano</option>
             </select>
 
-            <select>
-              <option>2D</option>
-              <option>3D</option>
-              <option>4D</option>
+            <select value={ format } onChange={(e) => setFormat(e.target.value)}>
+              <option value="">Formato</option>
+              <option value="2D">2D</option>
+              <option value="3D">3D</option>
+              <option value="4D">4D</option>
             </select>
           </div>
         <div className="movie-cinema"><h3>Funciones</h3></div>
 
           <div className="schedule">
             {["10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00", "20:30"].map((t) => (
-              <button key={t}>{t}</button>
-            ))}
-            </div>
+              <button key={t} onClick={() => setTime(t)}>
+              {t}
+              </button>
+            ))} 
+          </div>
+          <h3>Datos Seleccionados:</h3>
+          <h4>Idioma: {language}</h4>
+          <h4>Formato: {format}</h4>
+          <h4>Hora: {time}</h4>
+
             <div className="movie-synopsis">
                 <h2>Sinopsis</h2>
                 <p>{movie.overview}</p>    

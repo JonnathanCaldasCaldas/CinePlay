@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { CartContext } from './CartContext';
-import { processPayment, getOrderStatus } from '../services/payAPI';
-
+import { processPayment } from '../services/payAPI';
+import { sendOrderConfirmation } from '../services/notificationAPI';
+import { toast } from 'react-toastify';
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -10,6 +11,18 @@ const CartProvider = ({ children }) => {
 
   const openCart = () => setShowCart(true);
   const closeCart = () => setShowCart(false);
+
+  const [userSelections, setUserSelections] = useState({
+    cinema: '',
+    date: '',
+    language: '', 
+    format: '',
+    time: '',
+  })
+
+  const updateSelections = (updates) => { 
+    setUserSelections((prev) => ({ ...prev, ...updates }));
+  }
 
   // Añadir un producto al carrito
   const addToCart = (product) => {
@@ -54,7 +67,7 @@ const CartProvider = ({ children }) => {
       });
 
       setOrderId(resp.orderId ?? "ORD-007");
-      setStatusMessage(resp.message || "✅ Pago Exitoso!");
+      setStatusMessage(resp.message || "Pago Exitoso!");
       return true;
     } catch (error) {
       setStatusMessage(error.message);
@@ -65,10 +78,10 @@ const CartProvider = ({ children }) => {
   // Consultar estado del pedido simulado
   const checkStatus = async () => {
     try {
-      const resp = await getOrderStatus();
-      setStatusMessage(`📦 Estado del pedido: ${resp.status || resp.message}`);
+      const result = await sendOrderConfirmation(orderId);
+      toast.success(result.message || "Pedido confirmado exitosamente!");
     } catch (err) {
-      setStatusMessage(err.message);
+      toast.error(err.message || "Error al confirmar el pedido!");
     }
   };
 
@@ -84,6 +97,8 @@ const CartProvider = ({ children }) => {
     payOrder,
     checkStatus,
     calculateTotal,
+    userSelections,
+    updateSelections
   };
 
   return (

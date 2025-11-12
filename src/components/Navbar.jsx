@@ -13,7 +13,7 @@ export default function Navbar() {
   const [cinema, setCinema] = useState("Millenium Plaza");
   const [date, setDate] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { cart, openCart } = useCart();
+  const { cart, openCart, updateSelections } = useCart();
   
   const cities = {
     Cuenca: ["Millenium Plaza", "Batan", "Mall del Río"],
@@ -53,6 +53,7 @@ export default function Navbar() {
           onChange={(e) => {
             setCity(e.target.value);
             setCinema(cities[e.target.value][0]);
+            updateSelections({city: e.target.value});
           }}
         >
           {Object.keys(cities).map((c) => (
@@ -64,7 +65,10 @@ export default function Navbar() {
         <select
           className="nav-select"
           value={cinema}
-          onChange={(e) => setCinema(e.target.value)}
+          onChange={(e) => {
+            setCinema(e.target.value)
+            updateSelections({cinema: e.target.value});
+          }}
         >
           {cities[city].map((c) => (
             <option key={c}>{c}</option>
@@ -76,7 +80,10 @@ export default function Navbar() {
           type="date"
           className="nav-select"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+            setDate(e.target.value)
+            updateSelections({ date: e.target.value });
+          }}
         />
 
         <button className="btn-yellow">Ingresar</button>
