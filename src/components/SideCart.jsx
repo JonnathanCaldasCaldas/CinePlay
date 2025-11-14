@@ -61,11 +61,11 @@ const SideCart = ({ show, handleClose }) => {
               </div>
 
               <Button variant="primary" onClick={() => handlePay(false)}>
-                Proceder al Pago ✅
+                Proceder al Pago
               </Button>
 
               <Button variant="danger" onClick={() => handlePay(true)}>
-                Pagar (Simular Fallo) ❌
+                Pagar (Simular Fallo)
               </Button>
 
               {orderId && (

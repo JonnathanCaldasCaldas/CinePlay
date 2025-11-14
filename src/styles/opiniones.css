@@ -1,0 +1,66 @@
+/* Pega esto en styles/opiniones.css */
+
+.opiniones-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    min-height: 80vh; /* Asegura que ocupe espacio vertical */
+}
+
+.opiniones-title {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #FCB137; /* Color amarillo de tu logo */
+}
+
+.opiniones-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.opinion-card {
+    background-color: #333740;; /* Un color oscuro para la tarjeta */
+    border: 1px solid #3D8BFD; /* Color azul de tu logo */
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start; /* Alinea items al inicio */
+    gap: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.opinion-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Círculo perfecto */
+    border: 2px solid #FCB137;
+}
+
+.opinion-content {
+    flex: 1; /* Ocupa el espacio restante */
+    color: #e0e0e0; /* Texto gris claro */
+    
+}
+
+.opinion-name {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.opinion-location {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.75rem;
+    display: block; /* Para que ocupe su propia línea */
+}
+
+.opinion-text {
+    font-size: 1rem;
+    margin: 0;
+    font-style: italic;
+    line-height: 1.5;
+}

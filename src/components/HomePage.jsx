@@ -3,9 +3,7 @@ import {
     getTrendingMovies, 
     getPopularMovies, 
     getTopRatedMovies,
-    getNowPlayingMovies,
-    getOldestMovies,
-    getWorstRatedMovies
+    getNowPlayingMovies
 } from "../services/moviesAPI"; // Ajusta la ruta a tu moviesAPI.js
 
 export default function HomePage() {
@@ -29,14 +27,6 @@ export default function HomePage() {
             <CategoryRow 
                 title="De Estreno (En Cines)" 
                 fetchFunction={getNowPlayingMovies} 
-            />
-            <CategoryRow 
-                title="Peor Valoradas" 
-                fetchFunction={getWorstRatedMovies} 
-            />
-            <CategoryRow 
-                title="Antiguas" 
-                fetchFunction={getOldestMovies} 
             />
         </div>
     );

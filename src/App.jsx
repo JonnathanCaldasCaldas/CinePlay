@@ -24,7 +24,6 @@ function AppLayout() {
                 <Route path="/" element={<HomePage />} />
                 
                 <Route path="/cartelera" element={<MovieGrid movies={movies} />} />
-                <Route path="/opiniones" element={<Opiniones />} />
                 <Route path="/movie/:id" element={<MovieDetails />} />
             </Routes>
 

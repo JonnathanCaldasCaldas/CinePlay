@@ -4,6 +4,7 @@ import { getMovieById } from "../services/moviesAPI";
 import { Button } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
 import "./../styles/movieDetails.css";
+import Opiniones from "./Opiniones";
 
 export default function MovieDetail() {
     const { id } = useParams();
@@ -41,7 +42,7 @@ export default function MovieDetail() {
     const handleAddToCart = () => {
         addToCart(movieItem);
         openCart();
-    }
+  }
 
   return (
     <div
@@ -50,7 +51,7 @@ export default function MovieDetail() {
         backgroundImage: backdrop ? `url(${backdrop})` : "none",
       }}
     >
-      <button className="back-btn" onClick={() => navigate(-1)}>
+      <button className="back-button" onClick={() => navigate(-1)}>
         ← Regresar
       </button>
 
@@ -90,12 +91,15 @@ export default function MovieDetail() {
             <Button
               variant="warning"
               size="lg"
-              className="fw-bold mt-3"
+            className="btn-primary-cine fw-bold mt-3"
               onClick={handleAddToCart}
             > 
               AGREGAR AL CARRITO
-            </Button>
+          </Button>
         </div>
+      </div>
+      <div className="movie-opiniones-section">
+        <Opiniones movieId={id} />
       </div>
     </div>
   );

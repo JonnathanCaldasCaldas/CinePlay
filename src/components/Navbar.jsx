@@ -34,7 +34,7 @@ export default function Navbar() {
     <Link to="/" className="logo-link">
       <div className="logo">
         <img className="logo-icon" src={logoCinePlay} alt="CinePlay"/>
-        <span className="logo-text"><div style={{ color: "#FCB137" }}>Cine</div><div style={{ color: "#3D8BFD" }}>Play</div></span>
+        <span style={{ color: "#FCB137" }}>Cine<span style={{ color: "#3D8BFD" }}>Play</span></span>
       </div>
     </Link>
       <button 
@@ -79,27 +79,22 @@ export default function Navbar() {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button className="btn-yellow">Ingresar</button>
+        { /*<button className="btn-yellow">Ingresar</button>*/}
 
-        <Link to="/cartelera" className="icon-btn">🍿</Link>
-        <Link to="/opiniones" className="icon-btn">👤</Link>
+        <Link to="/cartelera" className="icon-btn" title="Cartelera">🍿</Link>
+        {/* <Link to="/opiniones" className="icon-btn">👤</Link> */}
         {/* <button className="icon-btn" onClick={openCart}>🛒</button> */}
-        <Button 
-          variant="primary"
-          className="position-relative"
+        <button 
+          className="icon-btn"
           onClick={openCart}
+          title="Carrito"
         >
           <FaShoppingCart size={20} />
           {cart.length > 0 && (
-            <Badge
-              bg="secondary"
-              pill
-              className="position-absolute top-0 start-100 translate-middle"
-            >
-              {cart.length}
-            </Badge>
+            <span className="cart-badge">{cart.length}
+            </span>
           )}
-        </Button>
+        </button>
       </nav>
     </header>
   );

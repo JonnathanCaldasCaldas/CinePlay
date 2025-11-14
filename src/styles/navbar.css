@@ -1,105 +1,186 @@
+/* VARIABLES (Para mantener consistencia) */
+:root {
+    --color-azul: #3D8BFD;
+    --color-morado: #D956DA;
+    --color-amarillo: #FCB137;
+    --color-naranja: #F86B1E;
+}
+
 header.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    background-color: #000000;
-    color: #ffffff;
-    height: 60px;
-    position: relative;
+    height: 70px; /* Un poquito más alto para elegancia */
+    position: sticky; /* Para que se quede fija al bajar */
+    top: 0;
+    z-index: 1000;
+
+    /* EFECTO CRISTAL (Glassmorphism) */
+    background-color: rgba(5, 5, 5, 0.85); /* Casi negro, pero transparente */
+    backdrop-filter: blur(12px); /* Efecto borroso detrás */
+    border-bottom: 1px solid rgba(61, 139, 253, 0.2); /* Borde sutil azul abajo */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    
 }
 
+/* LOGO */
+.logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 24px; /* Un poco más grande */
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.logo img {
+    height: 45px; /* Controlamos la altura de la imagen */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+.logo:hover img {
+    transform: rotate(-5deg) scale(1.1); /* Efecto divertido al pasar el mouse */
+}
+
+.logo-link{
+  text-decoration: none;
+}
+
+/* SELECTS Y FECHAS */
+.nav-select {
+    background: #111; /* Fondo muy oscuro */
+    color: #e0e0e0;
+    border: 1px solid #333; /* Borde sutil */
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Al hacer clic en los inputs, brillan en AZUL */
+.nav-select:focus, .nav-select:hover {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 8px rgba(61, 139, 253, 0.4);
+}
+
+/* BOTÓN AMARILLO (Call to Action) */
+.btn-yellow {
+    /* Degradado de Naranja a Amarillo */
+    background: linear-gradient(135deg, var(--color-amarillo), var(--color-naranja));
+    color: #000; /* Texto negro para contraste */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Más redondeado ("Pill shape") */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(248, 107, 30, 0.3); /* Sombra naranja */
+}
+
+.btn-yellow:hover {
+    transform: translateY(-2px); /* Se levanta un poco */
+    box-shadow: 0 6px 20px rgba(248, 107, 30, 0.6); /* Brilla más */
+    filter: brightness(1.1);
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    position: relative; /* Para poner badges de notificación */
+    text-decoration: none;
+}
+
+.icon-btn:hover {
+    background-color: rgba(61, 139, 253, 0.1); /* Fondo azulito muy suave */
+    color: #3D8BFD; /* Icono se vuelve AZUL NEÓN */
+    border-color: #3D8BFD;
+    transform: rotate(10deg); /* Pequeña rotación divertida */
+    box-shadow: 0 0 10px rgba(61, 139, 253, 0.3);
+}
+
+
+
+/* --- RESPONSIVE (MÓVIL) --- */
 .menu-toggle-btn {
     display: none; 
 }
 
 @media (max-width: 768px) {
-    
     .menu-toggle-btn {
         display: block;
         background: none;
         border: none;
-        color: white;
-        font-size: 30px;
+        color: var(--color-azul); /* Botón hamburguesa AZUL */
+        font-size: 28px;
         cursor: pointer;
-        margin-left: auto; 
     }
 
     .nav-links {
         flex-direction: column; 
-        
         position: absolute;
-        top: 60px;
+        top: 70px; /* Ajustado a la nueva altura del navbar */
         left: 0;
         width: 100%;
-        background-color: #1a1a1a;
-        padding: 20px 0;
-        z-index: 10;
+        background-color: #0a0a0a; /* Fondo sólido oscuro para el menú móvil */
+        border-bottom: 1px solid var(--color-morado); /* Detalle morado al final */
+        padding: 0;
+        z-index: 999;
         
-        height: 0; 
+        /* Animación suave */
+        max-height: 0; 
         overflow: hidden;
         opacity: 0;
-        transition: height 0.3s ease-out, opacity 0.3s ease-out;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .nav-links.menu-open {
-        height: auto;
-        max-height: 500px;
+        max-height: 500px; /* Suficiente para mostrar todo */
         opacity: 1;
-            & > * { 
-            width: 90%;
-            margin: 5px auto;
-        }
+        padding: 20px 0;
+    }
+    
+    /* Espaciado en móvil */
+    .nav-links > * {
+        width: 85%;
+        margin: 8px auto;
+        text-align: center;
     }
 }
 
-.logo {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.logo-icon {
-  width: 70px;
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.nav-select {
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
-}
-
-.btn-yellow {
-  background: #FFC300;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.icon-btn {
-  background: none;
-  color: white;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
+/* Estilo para el número flotante del carrito */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: linear-gradient(135deg, #FCB137, #F86B1E); /* Tu Naranja Oscuro */
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0a0a0a; /* Borde negro para separarlo del icono */
+    box-shadow: 0 0 8px rgba(248, 107, 30, 0.6); /* Brillo */
+    z-index: 10;
 }

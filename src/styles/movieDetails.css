@@ -32,23 +32,46 @@
     color: white;
 }
 
-.select-group select {
+/*.select-group select {
     background: #222;
     color: white;
     padding: 8px 10px;
     border-radius: 6px;
     margin-right: 10px;
-}
+}*/
 
 .schedule button {
-    margin-right: 10px;
-    margin-top: 10px;
-    background: goldenrod;
-    border-radius: 12px;
-    padding: 8px 15px;
+    background-color: transparent; /* Fondo transparente al inicio */
+    color: white;
+    
+    /* Borde Naranja Delgado */
+    border: 1px solid #FCB137;
+    border-radius: 8px; /* Menos redondeado que el principal */
+    
+    padding: 8px 16px;
+    margin: 5px;
+    font-family: 'Courier New', monospace; /* Fuente tipo digital (opcional) */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* Sombra sutil */
+    box-shadow: 0 0 5px rgba(252, 177, 55, 0.1);
 }
 
-.select-group{
+/* Al pasar el mouse o seleccionar */
+.schedule button:hover,
+.schedule button.selected { /* Si decides agregar lógica de selección */
+    background-color: #FCB137; /* Se llena de amarillo */
+    color: black; /* Texto negro */
+    
+    /* Brillo exterior */
+    box-shadow: 0 0 15px rgba(252, 177, 55, 0.6);
+    transform: scale(1.05);
+    border-color: #FCB137;
+}
+
+/*.select-group{
     background-color: #333740;
     color: #ffffff;
     text-align: left;
@@ -58,11 +81,11 @@
     appearance: none;
     cursor: pointer;
     font-weight: 500;
-}
+}*/
 
 .schedule{
     background-color: #333740;
-    color: #000000;
+    /*color: #000000;*/
     border-radius: 25px;
     padding: 10px; 
     border: none;
@@ -72,44 +95,11 @@
     font-weight: bold;
 }
 
-.btn-agregar-carrito {
-    border-radius: 16px;
-    background-color: #f0f0f0; 
-    color: #333;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 10px;
-}
-
-.back-btn {
-    position: absolute; 
-    top: 30px;
-    left: 30px;
-    z-index: 5;      
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    border-radius: 8px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.back-btn:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
 .movie-synopsis {
     position: relative;
     z-index: 2;
     color: #ffffff;
-    padding: 0 30px 30px 30px;
+    /*padding: 0 30px 30px 30px;*/
     max-width: 1000px;
     margin: 0 auto; 
 }
@@ -135,3 +125,56 @@
     margin-top: 15px;
     opacity: 0.9;
 }
+
+.movie-opiniones-section {
+  position: relative; /* Para estar sobre el fondo oscuro */
+  z-index: 2; 
+  /* Centrado y con ancho máximo */
+  max-width: 900px; /* Mismo ancho que las opiniones en la otra página */
+  margin: 2rem auto; /* 2rem de espacio arriba/abajo, y centrado auto */
+  padding: 0 1rem; /* Un poco de espacio en los lados */
+}
+
+.back-button {
+    background: #111; /* Fondo muy oscuro */
+    color: #e0e0e0;
+    border: 1px solid #333; /* Borde sutil */
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: absolute; 
+    top: 30px;
+    left: 30px;
+    z-index: 5;
+    font-weight: bold;
+}
+
+/* Al hacer clic en los inputs, brillan en AZUL */
+.back-button:focus, .back-button:hover {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 8px rgba(61, 139, 253, 0.4);
+}
+
+
+.select-group select {
+    margin: 0 10px 0 0;
+    background: #111; /* Fondo muy oscuro */
+    color: #e0e0e0;
+    border: 1px solid #333; /* Borde sutil */
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Al hacer clic en los inputs, brillan en AZUL */
+.select-group select:focus, .select-group select:hover {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 8px rgba(61, 139, 253, 0.4);
+}
+

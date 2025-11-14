@@ -1,3 +1,10 @@
+:root {
+    --color-azul: #3D8BFD;
+    --color-morado: #D956DA;
+    --color-amarillo: #FCB137;
+    --color-naranja: #F86B1E;
+}
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -9,21 +16,27 @@
 .movie-card {
   background: #1a1a1a;
   border-radius: 12px;
-  overflow: hidden;
+  border: 1px solid transparent;
+  overflow: visible;
   text-align: center;
-  transition: transform .2s;
+  transition: transform .3s;
   cursor: pointer;
-  height: 550px;
+  z-index: 1;
+  height: 90%;
+  margin: 25px  0 25px 10px;
 }
 
 .movie-card:hover {
   transform: scale(1.05);
+  z-index: 10;
+  border-color: var(--color-azul);
+  box-shadow: 0 0 10px rgba(217, 86, 218, 0.6);
 }
 
 .movie-poster {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 .movie-title {
@@ -32,9 +45,25 @@
   font-size: 18px;
   font-weight: 600;
 }
+
 .movie-rating {
-  color: gold;
-  margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    
+    margin-top: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    
+    /* Fondo degradado naranja para que resalte sobre el negro */
+    background: linear-gradient(135deg, var(--color-naranja), #b34509);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    
+    /* Sombra sutil */
+    box-shadow: 0 2px 5px rgba(248, 107, 30, 0.4);
 }
 
 .select-text {
@@ -42,4 +71,58 @@
   padding: 12px;
   font-size: 18px;
   font-weight: 600;
+}
+
+.category-section{
+  margin: 5px 30px;
+  padding: 20px;
+  height: 600px;
+}
+
+.category-title{
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  padding-left: 10px;
+  
+  /* La magia del degradado en el texto */
+  background: linear-gradient(90deg, var(--color-azul), var(--color-morado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Un pequeño borde izquierdo para decorar */
+  border-left: 5px solid var(--color-amarillo);
+}
+
+/* Botones de navegación (Next y Prev) */
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: rgba(0,0,0, 0.7); /* Fondo oscuro semitransparente */
+    color: var(--color-azul) !important; /* Tu azul */
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50%; /* Redondos */
+    border: 2px solid var(--color-azul);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Al pasar el mouse por las flechas */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--color-azul);
+    color: white !important;
+    box-shadow: 0 0 20px var(--color-azul); /* Brillo azul */
+}
+
+/* Ajustar el tamaño de la flechita interna */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 20px !important;
+}
+
+.movie-carousel{
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
