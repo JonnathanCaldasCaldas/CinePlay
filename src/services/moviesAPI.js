@@ -1,21 +1,37 @@
 const apiKey = "ee2c6d376418907fe8a0b4e7beada4e9";
 
-export async function fetchFromTMDB(endpoint) {
+async function fetchFromTMDB(endpoint) {
+  const cacheKey = `tmdb_cache${endpoint}`;
   const url = `https://api.themoviedb.org/3${endpoint}?api_key=${apiKey}`;
 
   try {
+    //PARTE ONLINE
     const res = await fetch(url);
     
     if (!res.ok) {
       console.error("Error al obtener películas:", res.status);
-      return [];
+      //return [];
     }
 
     const data = await res.json();
-    return data.results ?? data; // Asegura devolver data.results si existe, sino data
+    const dataToCache = data.results ? data.results : data;
+
+    localStorage.setItem(cacheKey, JSON.stringify(dataToCache));
+
+    return dataToCache;
+
   } catch (error) {
-    console.error("Error al obtener películas:", error);
-    return [];
+    //PARTE OFFLINE
+    console.warn(`Error de red. Cargando desde caché para: ${endpoint}`, error);
+    
+    const cachedData = localStorage.getItem(cacheKey);
+    if (cachedData) {
+      console.log(`Cache hit para: ${cacheKey}`);
+      return JSON.parse(cachedData);
+    } else {
+      console.error("Sin conexion y sin datos en caché");
+      return null;
+    }
   }
 }
 export function getMovieById(id) {
