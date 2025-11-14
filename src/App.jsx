@@ -7,6 +7,8 @@ import MovieDetails from "./components/MovieDetails";
 import CartProvider from "./context/CartProvider";
 import { useCart } from "./context/CartContext";
 import SideCart from "./components/SideCart";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AppLayout() {
     const { showCart, closeCart } = useCart();
@@ -29,6 +31,9 @@ function AppLayout() {
 
             {/* 3. Footer estático */}
             <Footer />
+            {/* Contenido para notificaciones*/}
+            <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} newestOnTop closeOnClick pauseOnHover theme="colored"
+            />
         </div>
     )
 }
